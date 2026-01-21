@@ -583,13 +583,34 @@ class Export_Manager
     {
         $options = array();
 
+        // Get exporter to know which fields exist and their types.
+        $exporter = $this->format_registry->get($format);
+        if (!$exporter) {
+            return $options;
+        }
+
+        // Get field definitions from exporter.
+        $fields = $exporter->get_options_fields();
+        $defaults = $exporter->get_default_options();
+
         // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in caller.
         $post_data = $_POST;
 
-        foreach ($post_data as $key => $value) {
-            if (0 === strpos($key, 'export_option_' . $format . '_')) {
-                $option_key = str_replace('export_option_' . $format . '_', '', $key);
-                $options[$option_key] = sanitize_text_field($value);
+        // Process each defined field.
+        foreach ($fields as $field) {
+            $field_id = $field['id'];
+            $post_key = 'export_option_' . $format . '_' . $field_id;
+
+            if ('checkbox' === $field['type']) {
+                // Checkbox: if not in POST, it's unchecked (false).
+                // If in POST with value "1", it's checked (true).
+                $options[$field_id] = isset($post_data[$post_key]) && '1' === $post_data[$post_key];
+            } elseif (isset($post_data[$post_key])) {
+                // Other fields: sanitize and use.
+                $options[$field_id] = sanitize_text_field($post_data[$post_key]);
+            } else {
+                // Use default if not in POST.
+                $options[$field_id] = isset($defaults[$field_id]) ? $defaults[$field_id] : '';
             }
         }
 
