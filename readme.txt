@@ -4,7 +4,7 @@ Tags: forminator, export, csv, excel, json, xml, pdf, html, spreadsheet
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,11 @@ The plugin includes auto-update functionality via GitHub releases. You can also 
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed PDF include_date checkbox not being respected when unchecked
+* Fixed Excel bold_headers checkbox always applying even when disabled
+* Fixed Excel freeze_row option not being respected when unchecked
+
 = 1.1.0 =
 * WordPress 6.9 compatibility
 * Remember last export format selection
@@ -88,8 +93,8 @@ The plugin includes auto-update functionality via GitHub releases. You can also 
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-Improved UX with remembered format selection and loading indicators.
+= 1.1.1 =
+Bugfix: Fixed checkbox options not being respected in PDF and Excel exports.
 
 == Developer Notes ==
 
