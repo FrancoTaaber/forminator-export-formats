@@ -2,9 +2,9 @@
 Contributors: FrancoTaaber
 Tags: forminator, export, csv, excel, json, xml, pdf, html, spreadsheet
 Requires at least: 5.8
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,15 @@ The plugin includes auto-update functionality via GitHub releases. You can also 
 
 == Changelog ==
 
+= 1.1.0 =
+* WordPress 6.9 compatibility
+* Remember last export format selection
+* Loading indicator during export
+* PDF auto-sizing columns
+* Better file upload field handling
+* Filename template support
+* Entry ID column option
+
 = 1.0.0 =
 * Initial release
 * CSV, Excel, JSON, XML, PDF, and HTML export formats
@@ -79,8 +88,8 @@ The plugin includes auto-update functionality via GitHub releases. You can also 
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release.
+= 1.1.0 =
+Improved UX with remembered format selection and loading indicators.
 
 == Developer Notes ==
 

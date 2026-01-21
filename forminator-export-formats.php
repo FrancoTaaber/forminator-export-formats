@@ -3,8 +3,9 @@
  * Plugin Name: Forminator Export Formats
  * Plugin URI: https://github.com/FrancoTaaber/forminator-export-formats
  * Description: Extend Forminator with multiple export formats: CSV, Excel, JSON, XML, PDF, and HTML.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires at least: 5.8
+ * Tested up to: 6.9
  * Requires PHP: 7.4
  * Author: Franco Taaber
  * Author URI: https://francotaaber.com
@@ -22,7 +23,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin version.
-define('FORMINATOR_EXPORT_FORMATS_VERSION', '1.0.0');
+define('FORMINATOR_EXPORT_FORMATS_VERSION', '1.1.0');
 
 // Plugin file path.
 define('FORMINATOR_EXPORT_FORMATS_FILE', __FILE__);

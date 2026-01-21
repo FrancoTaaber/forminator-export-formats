@@ -1,13 +1,17 @@
 /**
  * Forminator Export Formats - Admin JavaScript
- *
+ * 
  * @package Forminator_Export_Formats
+ * @version 1.1.0
  */
 
 (function ($) {
     'use strict';
 
     var FEF = {
+        // Storage key for remembering last format
+        STORAGE_KEY: 'fef_last_format',
+
         /**
          * Initialize
          */
@@ -20,6 +24,8 @@
                     self.hijackExportButton();
                     self.bindModalEvents();
                     self.bindFormatSelection();
+                    self.bindExportSubmit();
+                    self.restoreLastFormat();
                 }, 500);
             });
 
@@ -29,6 +35,8 @@
                     self.hijackExportButton();
                     self.bindModalEvents();
                     self.bindFormatSelection();
+                    self.bindExportSubmit();
+                    self.restoreLastFormat();
                 }, 1000);
             });
         },
@@ -100,6 +108,7 @@
             var $modal = $('#forminator-export-formats-modal');
             if ($modal.length) {
                 $modal.fadeIn(200);
+                this.restoreLastFormat();
                 console.log('FEF: Modal opened');
             } else {
                 console.log('FEF: Modal element not found');
@@ -112,6 +121,7 @@
         closeModal: function () {
             var $modal = $('#forminator-export-formats-modal');
             $modal.fadeOut(200);
+            this.hideLoading();
         },
 
         /**
@@ -135,7 +145,7 @@
 
             // Close on ESC
             $(document).off('keydown.fef-esc').on('keydown.fef-esc', function (e) {
-                if (e.key === 'Escape' && $('#forminator-export-formats-modal').hasClass('sui-active')) {
+                if (e.key === 'Escape' && $('#forminator-export-formats-modal').is(':visible')) {
                     self.closeModal();
                 }
             });
@@ -162,6 +172,9 @@
                 // Load format options
                 var format = $radio.val();
                 self.loadFormatOptions(format);
+
+                // Save to localStorage
+                self.saveLastFormat(format);
             });
 
             // Radio change
@@ -170,6 +183,115 @@
                 $('.fef-format-option').removeClass('selected');
                 $(this).closest('.fef-format-option').addClass('selected');
                 self.loadFormatOptions(format);
+                self.saveLastFormat(format);
+            });
+        },
+
+        /**
+         * Bind export form submit
+         */
+        bindExportSubmit: function () {
+            var self = this;
+
+            $(document).off('submit.fef-export').on('submit.fef-export', '#fef-export-form', function () {
+                self.showLoading();
+
+                // Show success message after a delay (form submits normally)
+                setTimeout(function () {
+                    self.hideLoading();
+                    self.showNotification('success', 'Export started! Your download should begin shortly.');
+                }, 1500);
+            });
+        },
+
+        /**
+         * Save last selected format to localStorage
+         */
+        saveLastFormat: function (format) {
+            try {
+                localStorage.setItem(this.STORAGE_KEY, format);
+            } catch (e) {
+                console.log('FEF: Could not save format to localStorage');
+            }
+        },
+
+        /**
+         * Restore last selected format from localStorage
+         */
+        restoreLastFormat: function () {
+            try {
+                var lastFormat = localStorage.getItem(this.STORAGE_KEY);
+                if (lastFormat) {
+                    var $radio = $('input[name="export_format"][value="' + lastFormat + '"]');
+                    if ($radio.length && !$radio.prop('disabled')) {
+                        $radio.prop('checked', true);
+                        $('.fef-format-option').removeClass('selected');
+                        $radio.closest('.fef-format-option').addClass('selected');
+                        this.loadFormatOptions(lastFormat);
+                        console.log('FEF: Restored last format:', lastFormat);
+                    }
+                }
+            } catch (e) {
+                console.log('FEF: Could not restore format from localStorage');
+            }
+        },
+
+        /**
+         * Show loading overlay
+         */
+        showLoading: function () {
+            var $modal = $('#forminator-export-formats-modal');
+            if (!$modal.find('.fef-loading-overlay').length) {
+                $modal.find('.fef-modal-body').append(
+                    '<div class="fef-loading-overlay">' +
+                    '<div class="fef-loading-spinner">' +
+                    '<span class="spinner is-active"></span>' +
+                    '<p>Exporting...</p>' +
+                    '</div>' +
+                    '</div>'
+                );
+            }
+            $modal.find('.fef-loading-overlay').fadeIn(200);
+        },
+
+        /**
+         * Hide loading overlay
+         */
+        hideLoading: function () {
+            $('.fef-loading-overlay').fadeOut(200);
+        },
+
+        /**
+         * Show notification
+         */
+        showNotification: function (type, message) {
+            var $notice = $(
+                '<div class="notice notice-' + type + ' is-dismissible fef-notice">' +
+                '<p>' + message + '</p>' +
+                '<button type="button" class="notice-dismiss"></button>' +
+                '</div>'
+            );
+
+            // Insert after the page title
+            var $target = $('.wrap h1').first();
+            if ($target.length) {
+                $target.after($notice);
+            } else {
+                $('body').prepend($notice);
+            }
+
+            // Auto-dismiss after 5 seconds
+            setTimeout(function () {
+                $notice.fadeOut(300, function () {
+                    $(this).remove();
+                });
+            }, 5000);
+
+            // Dismiss button
+            $notice.find('.notice-dismiss').on('click', function () {
+                $notice.fadeOut(300, function () {
+                    $(this).remove();
+                });
             });
         },
 
@@ -221,3 +343,4 @@
     window.ForminatorExportFormats = FEF;
 
 })(jQuery);
+

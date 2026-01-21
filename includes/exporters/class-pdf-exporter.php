@@ -359,7 +359,7 @@ class PDF_Exporter extends Abstract_Exporter
     }
 
     /**
-     * Generate HTML table for TCPDF.
+     * Generate HTML table for TCPDF with auto-sizing columns.
      *
      * @param array $headers Headers.
      * @param array $rows    Data rows.
@@ -383,11 +383,19 @@ class PDF_Exporter extends Abstract_Exporter
             $html .= '</p>';
         }
 
+        // Calculate column widths based on content
+        $col_widths = $this->calculate_column_widths($headers, $rows);
+
         $html .= '<table border="1" cellpadding="5" cellspacing="0" style="width:100%;border-collapse:collapse;">';
         $html .= '<thead><tr style="background-color:#f0f0f0;">';
 
-        foreach ($headers as $header) {
-            $html .= '<th style="font-weight:bold;text-align:left;">' . esc_html($header) . '</th>';
+        foreach ($headers as $i => $header) {
+            $width = isset($col_widths[$i]) ? $col_widths[$i] : 'auto';
+            $style = 'font-weight:bold;text-align:left;';
+            if ($width !== 'auto') {
+                $style .= 'width:' . $width . '%;';
+            }
+            $html .= '<th style="' . esc_attr($style) . '">' . esc_html($header) . '</th>';
         }
 
         $html .= '</tr></thead>';
@@ -395,8 +403,16 @@ class PDF_Exporter extends Abstract_Exporter
 
         foreach ($rows as $row) {
             $html .= '<tr>';
+            $i = 0;
             foreach ($row as $cell) {
-                $html .= '<td>' . esc_html($this->sanitize_value($cell)) . '</td>';
+                $value = $this->sanitize_value($cell);
+                // Handle long text with word wrap
+                $cell_style = 'word-wrap:break-word;';
+                if (strlen($value) > 100) {
+                    $cell_style .= 'font-size:9px;';
+                }
+                $html .= '<td style="' . esc_attr($cell_style) . '">' . esc_html($value) . '</td>';
+                $i++;
             }
             $html .= '</tr>';
         }
@@ -404,5 +420,77 @@ class PDF_Exporter extends Abstract_Exporter
         $html .= '</tbody></table>';
 
         return $html;
+    }
+
+    /**
+     * Calculate optimal column widths based on content.
+     *
+     * @param array $headers Headers.
+     * @param array $rows    Data rows.
+     * @return array Column widths as percentages.
+     */
+    private function calculate_column_widths($headers, $rows)
+    {
+        $col_count = count($headers);
+        if ($col_count === 0) {
+            return array();
+        }
+
+        // Calculate average content length for each column
+        $avg_lengths = array_fill(0, $col_count, 0);
+        $max_lengths = array_fill(0, $col_count, 0);
+
+        // Include headers in calculation
+        foreach ($headers as $i => $header) {
+            $len = strlen($header);
+            $avg_lengths[$i] += $len;
+            $max_lengths[$i] = max($max_lengths[$i], $len);
+        }
+
+        // Sample rows (max 50 for performance)
+        $sample_rows = array_slice($rows, 0, 50);
+        foreach ($sample_rows as $row) {
+            $i = 0;
+            foreach ($row as $cell) {
+                if ($i >= $col_count)
+                    break;
+                $len = strlen($this->sanitize_value($cell));
+                $avg_lengths[$i] += $len;
+                $max_lengths[$i] = max($max_lengths[$i], min($len, 100)); // Cap at 100
+                $i++;
+            }
+        }
+
+        // Calculate average
+        $row_count = count($sample_rows) + 1; // +1 for headers
+        foreach ($avg_lengths as $i => $total) {
+            $avg_lengths[$i] = $total / $row_count;
+        }
+
+        // Convert to percentages (min 5%, max 40%)
+        $total_avg = array_sum($avg_lengths);
+        if ($total_avg == 0) {
+            // Equal widths
+            return array_fill(0, $col_count, 100 / $col_count);
+        }
+
+        $widths = array();
+        foreach ($avg_lengths as $i => $avg) {
+            $pct = ($avg / $total_avg) * 100;
+            // Clamp between 5% and 40%
+            $pct = max(5, min(40, $pct));
+            $widths[$i] = round($pct, 1);
+        }
+
+        // Normalize to 100%
+        $total = array_sum($widths);
+        if ($total > 0 && abs($total - 100) > 1) {
+            $factor = 100 / $total;
+            foreach ($widths as $i => $w) {
+                $widths[$i] = round($w * $factor, 1);
+            }
+        }
+
+        return $widths;
     }
 }
