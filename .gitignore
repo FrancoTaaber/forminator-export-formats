@@ -1,26 +1,53 @@
-# Dependencies
+# ============================================
+# Forminator Export Formats - .gitignore
+# ============================================
+
+# Dependencies (never commit these)
 /vendor/
 /node_modules/
 
 # Build outputs
 /build/
+*.zip
 
-# Development files
-.DS_Store
-*.log
-*.cache
+# Composer files (dev only)
+composer.lock
+.composer
+
+# Development/testing
 .phpunit.result.cache
 phpunit.xml
 .php-cs-fixer.cache
+*.log
+*.cache
+coverage/
+.phpunit.cache/
 
-# IDE
+# IDE/Editor
 .idea/
 .vscode/
 *.sublime-*
-
-# Composer (dev only, vendor is built separately)
-composer.lock
+*.swp
+*.swo
+*~
 
 # OS files
-Thumbs.db
 .DS_Store
+Thumbs.db
+Desktop.ini
+._*
+
+# Security - never commit these
+*.pem
+*.key
+*.crt
+.env
+.env.local
+*.sql
+*.bak
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
