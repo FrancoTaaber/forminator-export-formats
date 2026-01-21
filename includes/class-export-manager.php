@@ -314,6 +314,14 @@ class Export_Manager
         $headers = array();
         $rows = array();
 
+        // Check if Entry ID should be included.
+        $include_entry_id = isset($this->options['include_entry_id']) && $this->options['include_entry_id'];
+
+        // Add Entry ID header if enabled.
+        if ($include_entry_id) {
+            $headers[] = __('Entry ID', 'forminator-export-formats');
+        }
+
         // Get field mappers using reflection to access Forminator's method.
         $export = \Forminator_Export::get_instance();
 
@@ -342,6 +350,12 @@ class Export_Manager
             }
 
             $row = array();
+
+            // Add Entry ID as first column if enabled.
+            if ($include_entry_id) {
+                $row[] = $entry->entry_id;
+            }
+
             foreach ($mappers as $mapper) {
                 if (isset($mapper['property'])) {
                     $property = $mapper['property'];

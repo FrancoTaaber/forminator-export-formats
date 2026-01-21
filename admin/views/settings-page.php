@@ -18,6 +18,7 @@ $options = get_option('forminator_export_formats_options', array());
 $defaults = array(
     'default_format' => 'csv',
     'enabled_formats' => array('csv', 'excel', 'json', 'xml', 'pdf', 'html'),
+    'include_entry_id' => false,
     'csv_delimiter' => ',',
     'csv_bom' => true,
     'json_pretty' => true,
@@ -92,6 +93,19 @@ $all_formats = array(
                         </p>
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e('Include Entry ID', 'forminator-export-formats'); ?></th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="forminator_export_formats_options[include_entry_id]" value="1"
+                                <?php checked($options['include_entry_id'], true); ?>>
+                            <?php esc_html_e('Add Entry ID as first column in exports', 'forminator-export-formats'); ?>
+                        </label>
+                        <p class="description">
+                            <?php esc_html_e('When enabled, each export will include the unique submission ID as the first column.', 'forminator-export-formats'); ?>
+                        </p>
+                    </td>
+                </tr>
             </table>
         </div>
 
@@ -108,13 +122,17 @@ $all_formats = array(
                     <td>
                         <select id="csv_delimiter" name="forminator_export_formats_options[csv_delimiter]">
                             <option value="," <?php selected($options['csv_delimiter'], ','); ?>>
-                                <?php esc_html_e('Comma (,)', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Comma (,)', 'forminator-export-formats'); ?>
+                            </option>
                             <option value=";" <?php selected($options['csv_delimiter'], ';'); ?>>
-                                <?php esc_html_e('Semicolon (;)', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Semicolon (;)', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="	" <?php selected($options['csv_delimiter'], "\t"); ?>>
-                                <?php esc_html_e('Tab', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Tab', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="|" <?php selected($options['csv_delimiter'], '|'); ?>>
-                                <?php esc_html_e('Pipe (|)', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Pipe (|)', 'forminator-export-formats'); ?>
+                            </option>
                         </select>
                     </td>
                 </tr>
@@ -193,9 +211,11 @@ $all_formats = array(
                     <td>
                         <select id="pdf_orientation" name="forminator_export_formats_options[pdf_orientation]">
                             <option value="portrait" <?php selected($options['pdf_orientation'], 'portrait'); ?>>
-                                <?php esc_html_e('Portrait', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Portrait', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="landscape" <?php selected($options['pdf_orientation'], 'landscape'); ?>>
-                                <?php esc_html_e('Landscape', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Landscape', 'forminator-export-formats'); ?>
+                            </option>
                         </select>
                     </td>
                 </tr>
@@ -231,13 +251,17 @@ $all_formats = array(
                     <td>
                         <select id="html_theme" name="forminator_export_formats_options[html_theme]">
                             <option value="light" <?php selected($options['html_theme'], 'light'); ?>>
-                                <?php esc_html_e('Light', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Light', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="dark" <?php selected($options['html_theme'], 'dark'); ?>>
-                                <?php esc_html_e('Dark', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Dark', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="minimal" <?php selected($options['html_theme'], 'minimal'); ?>>
-                                <?php esc_html_e('Minimal', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Minimal', 'forminator-export-formats'); ?>
+                            </option>
                             <option value="bordered" <?php selected($options['html_theme'], 'bordered'); ?>>
-                                <?php esc_html_e('Bordered', 'forminator-export-formats'); ?></option>
+                                <?php esc_html_e('Bordered', 'forminator-export-formats'); ?>
+                            </option>
                         </select>
                     </td>
                 </tr>

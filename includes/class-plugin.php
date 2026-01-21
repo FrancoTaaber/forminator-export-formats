@@ -108,6 +108,7 @@ final class Plugin
         $defaults = array(
             'default_format' => 'csv',
             'enabled_formats' => array('csv', 'excel', 'json', 'xml', 'pdf', 'html'),
+            'include_entry_id' => false,
             'csv_delimiter' => ',',
             'csv_enclosure' => '"',
             'csv_bom' => true,

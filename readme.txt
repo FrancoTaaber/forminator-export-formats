@@ -4,7 +4,7 @@ Tags: forminator, export, csv, excel, json, xml, pdf, html, spreadsheet
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,10 @@ The plugin includes auto-update functionality via GitHub releases. You can also 
 3. PDF export example
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Entry ID column option - include submission ID as first column
+* Settings: Added global toggle in General Settings
 
 = 1.1.1 =
 * Fixed PDF include_date checkbox not being respected when unchecked
