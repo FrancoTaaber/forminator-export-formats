@@ -1,0 +1,26 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Build outputs
+/build/
+
+# Development files
+.DS_Store
+*.log
+*.cache
+.phpunit.result.cache
+phpunit.xml
+.php-cs-fixer.cache
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Composer (dev only, vendor is built separately)
+composer.lock
+
+# OS files
+Thumbs.db
+.DS_Store

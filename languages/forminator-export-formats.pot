@@ -1,0 +1,357 @@
+# Translation Template for Forminator Export Formats
+# Copyright (C) 2024
+# This file is distributed under the GPL v2 or later.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Forminator Export Formats 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-20 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: forminator-export-formats.php
+msgid "Forminator Export Formats requires PHP %1$s or higher. Your current PHP version is %2$s. Please upgrade PHP to use this plugin."
+msgstr ""
+
+#: forminator-export-formats.php
+msgid "Forminator Export Formats requires Forminator plugin to be installed and activated."
+msgstr ""
+
+#: forminator-export-formats.php
+msgid "Forminator Export Formats requires Forminator %1$s or higher. Your current version is %2$s. Please update Forminator."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Export Formats"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Export Submissions"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Select Format"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Format Options"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Download"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Exporting..."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Use current filters"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "CSV"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Comma-separated values file. Compatible with Excel, Google Sheets, and other spreadsheet applications."
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Delimiter"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Comma (,)"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Semicolon (;)"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Tab"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Pipe (|)"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Text Enclosure"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Add BOM for Excel"
+msgstr ""
+
+#: includes/exporters/class-csv-exporter.php
+msgid "Add UTF-8 Byte Order Mark for better Excel compatibility."
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Excel"
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Microsoft Excel spreadsheet (.xlsx). Native format for Excel 2007 and later."
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Sheet Name"
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Submissions"
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Freeze Header Row"
+msgstr ""
+
+#: includes/exporters/class-excel-exporter.php
+msgid "Bold Headers"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "JSON"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "JavaScript Object Notation. Ideal for API integrations and data processing."
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "Pretty Print"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "Include Metadata"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "Data Structure"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "Nested (field names as keys)"
+msgstr ""
+
+#: includes/exporters/class-json-exporter.php
+msgid "Flat (arrays with headers)"
+msgstr ""
+
+#: includes/exporters/class-xml-exporter.php
+msgid "XML"
+msgstr ""
+
+#: includes/exporters/class-xml-exporter.php
+msgid "Extensible Markup Language. Ideal for data interchange and system integration."
+msgstr ""
+
+#: includes/exporters/class-xml-exporter.php
+msgid "Root Element Name"
+msgstr ""
+
+#: includes/exporters/class-xml-exporter.php
+msgid "Entry Element Name"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "PDF"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Portable Document Format. Best for printing and sharing formatted reports."
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Page Orientation"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Portrait"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Landscape"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Paper Size"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Document Title"
+msgstr ""
+
+#: includes/exporters/class-pdf-exporter.php
+msgid "Include Export Date"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "HTML"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "HTML table format. View in any web browser or embed in web pages."
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Theme"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Light"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Dark"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Minimal"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Bordered"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Standalone Document"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Include CSS Styles"
+msgstr ""
+
+#: includes/exporters/class-html-exporter.php
+msgid "Responsive Table"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "You are not allowed to export submissions."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Invalid form parameters."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Invalid export format."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Form not found."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Invalid form type."
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Date"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Question"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Answer"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Result"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Correct"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Incorrect"
+msgstr ""
+
+#: includes/class-export-manager.php
+msgid "Extra"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "General Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "Default Export Format"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "Enabled Formats"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "CSV Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "Excel Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "JSON Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "XML Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "PDF Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "HTML Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "Save Settings"
+msgstr ""
+
+#: admin/views/settings-page.php
+msgid "Settings saved successfully."
+msgstr ""
+
+#: admin/views/export-modal.php
+msgid "Export Format"
+msgstr ""
+
+#: admin/views/export-modal.php
+msgid "Choose a format to export your form submissions."
+msgstr ""
+
+#: admin/views/export-modal.php
+msgid "Apply current submission filters"
+msgstr ""
+
+#: admin/views/export-modal.php
+msgid "Only export entries matching the currently active filters."
+msgstr ""
+
+#: admin/views/export-modal.php
+msgid "Close modal"
+msgstr ""
