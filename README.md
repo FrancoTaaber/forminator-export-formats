@@ -1,10 +1,12 @@
 # Forminator Export Formats
 
+[![CI](https://github.com/FrancoTaaber/forminator-export-formats/actions/workflows/ci.yml/badge.svg)](https://github.com/FrancoTaaber/forminator-export-formats/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/FrancoTaaber/forminator-export-formats)](https://github.com/FrancoTaaber/forminator-export-formats/releases)
+[![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![PHP](https://img.shields.io/badge/php-%3E%3D7.4-8892BF.svg)](https://php.net/)
+[![WordPress](https://img.shields.io/badge/wordpress-%3E%3D5.8-21759B.svg)](https://wordpress.org/)
+
 Extend Forminator with multiple export formats: CSV, Excel, JSON, XML, PDF, and HTML.
-
-## Description
-
-This plugin adds multi-format export functionality to Forminator form submissions. Instead of just CSV, you can now export your data in 6 different formats.
 
 ## Features
 
@@ -17,15 +19,17 @@ This plugin adds multi-format export functionality to Forminator form submission
 
 ## Requirements
 
-- WordPress 5.8 or higher
-- PHP 7.4 or higher
-- Forminator 1.20 or higher
+- WordPress 5.8+
+- PHP 7.4+
+- Forminator 1.20.0+
 
 ## Installation
 
-1. Upload the `forminator-export-formats` folder to `/wp-content/plugins/`
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Ensure Forminator is installed and activated
+### From GitHub Releases
+
+1. Download the latest `forminator-export-formats.zip` from [Releases](https://github.com/FrancoTaaber/forminator-export-formats/releases)
+2. Go to WordPress Admin → Plugins → Add New → Upload Plugin
+3. Upload the ZIP file and activate
 
 ## Usage
 
@@ -44,7 +48,15 @@ Access global settings at **Forminator → Export Formats**:
 - Enable/disable specific formats
 - Configure default options for each format
 
-## For Developers
+## Development
+
+### Build
+
+```bash
+./build.sh
+```
+
+Creates `build/forminator-export-formats.zip` ready for distribution.
 
 ### Adding Custom Export Formats
 
@@ -68,12 +80,19 @@ add_filter('forminator_export_formats_before_download', function($form_id, $form
 
 ## Changelog
 
+### 1.2.0
+- Added Entry ID option for exports
+- Improved Excel formatting
+- Bug fixes
+
 ### 1.0.0
 - Initial release
 - Support for CSV, Excel, JSON, XML, PDF, HTML formats
-- Settings page for global configuration
-- Format-specific options
 
 ## License
 
-GPL v2 or later
+GPL v2 or later. See [LICENSE](LICENSE) file.
+
+## Credits
+
+Developed by [Franco Taaber](https://francotaaber.com)
